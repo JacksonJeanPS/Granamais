@@ -21,6 +21,29 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getClaims();
+  const { data } = await supabase.auth.getClaims();
+  const authenticated = Boolean(data?.claims?.sub);
+  const path = request.nextUrl.pathname;
+  const protectedRoute = path.startsWith("/dashboard") || path.startsWith("/onboarding");
+  const guestRoute = ["/entrar", "/cadastrar", "/recuperar-senha"].includes(path);
+
+  const redirectWithCookies = (url: URL) => {
+    const redirect = NextResponse.redirect(url);
+    response.cookies.getAll().forEach((cookie) => redirect.cookies.set(cookie));
+    return redirect;
+  };
+
+  if (!authenticated && protectedRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/entrar";
+    url.searchParams.set("next", `${path}${request.nextUrl.search}`);
+    return redirectWithCookies(url);
+  }
+  if (authenticated && guestRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/dashboard";
+    url.search = "";
+    return redirectWithCookies(url);
+  }
   return response;
 }

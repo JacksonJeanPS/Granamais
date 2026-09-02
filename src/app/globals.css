@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --background: #f6f7f3; --surface: #ffffff; --subtle: #eef1ec;
@@ -6,6 +7,10 @@
   --primary: #145c43; --primary-interactive: #1d7a57;
   --brand: #b7e36b; --brand-soft: #e8f5d0;
   --positive: #16865a; --negative: #b93f44; --ink: #152019;
+  --card: #ffffff; --card-foreground: #18201d; --popover: #ffffff; --popover-foreground: #18201d;
+  --primary-foreground: #ffffff; --secondary: #eef1ec; --secondary-foreground: #18201d;
+  --muted-foreground: #5e6964; --accent: #e8f5d0; --accent-foreground: #145c43;
+  --destructive: #b93f44; --input: #dce2dd; --ring: #1d7a57; --radius: .875rem;
 }
 
 @theme inline {
@@ -15,18 +20,27 @@
   --color-primary: var(--primary); --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft); --color-positive: var(--positive);
   --color-negative: var(--negative); --color-ink: var(--ink);
-  --font-sans: var(--font-inter); --font-display: var(--font-manrope);
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-input: var(--input); --color-ring: var(--ring);
+  --font-sans: "Inter", "Inter Fallback", sans-serif; --font-display: "Manrope", "Manrope Fallback", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius);
   --shadow-premium: 0 28px 70px -32px rgb(20 45 34 / 0.28);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+.dark {
     --background: #101714; --surface: #18211d; --subtle: #202b26;
     --foreground: #f2f5f3; --muted: #aeb9b3; --border: #2e3a34;
     --primary: #75c9a1; --primary-interactive: #8bdab4;
     --brand: #b7e36b; --brand-soft: #273b25;
     --positive: #6ed0a2; --negative: #f18484; --ink: #152019;
-  }
+    --card: #18211d; --card-foreground: #f2f5f3; --popover: #18211d; --popover-foreground: #f2f5f3;
+    --primary-foreground: #102019; --secondary: #202b26; --secondary-foreground: #f2f5f3;
+    --muted-foreground: #aeb9b3; --accent: #273b25; --accent-foreground: #b7e36b;
+    --destructive: #f18484; --input: #2e3a34; --ring: #75c9a1;
 }
 
 * { box-sizing: border-box; }

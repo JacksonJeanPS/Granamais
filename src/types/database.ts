@@ -872,7 +872,23 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      complete_onboarding: {
+        Args: {
+          p_account_color: string
+          p_account_name: string
+          p_account_type: Database["public"]["Enums"]["account_type"]
+          p_bank_name: string
+          p_card_brand: string
+          p_card_color: string
+          p_card_issuer: string
+          p_card_name: string
+          p_closing_day: number
+          p_credit_limit: number
+          p_due_day: number
+          p_initial_balance: number
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       account_type:
