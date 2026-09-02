@@ -2,14 +2,14 @@
 
 Aplicação de finanças pessoais criada exclusivamente para o público brasileiro. O Grana+ reúne contas, cartões, parcelas, orçamento e metas em uma experiência clara, acessível e responsiva.
 
-> Em desenvolvimento. Esta etapa contém a fundação técnica e visual; autenticação, banco de dados e funcionalidades financeiras serão adicionados nas próximas etapas.
+> Em desenvolvimento. A fundação técnica, o banco de dados e a infraestrutura de autenticação já estão configurados; as telas funcionais serão adicionadas nas próximas etapas.
 
 ## Princípios do produto
 
 - Interface e conteúdo em português do Brasil
 - Valores em Real (R$) e datas no padrão brasileiro
 - Cadastro financeiro manual, com privacidade e controle do usuário
-- Indicadores e ativos tradicionais brasileiros, sem criptoativos
+- Indicadores econômicos oficiais e ativos tradicionais brasileiros
 - Acessibilidade, responsividade e segurança desde a fundação
 
 ## Stack atual
@@ -19,6 +19,14 @@ Aplicação de finanças pessoais criada exclusivamente para o público brasilei
 - TypeScript em modo estrito
 - Tailwind CSS 4
 - ESLint
+- Supabase Auth, Postgres e Row Level Security
+- Zod para validação de configuração e formulários
+
+## Banco de dados
+
+O schema financeiro é reproduzível pelas migrations em `supabase/migrations`. As 16 tabelas públicas usam RLS e chaves compostas de propriedade para impedir relações entre dados de usuários diferentes.
+
+O cadastro de um usuário cria automaticamente seu perfil e 14 categorias brasileiras iniciais. Compras parceladas geram parcelas e faturas futuras de forma transacional, incluindo o ajuste de centavos na última parcela.
 
 ## Executar localmente
 
@@ -43,12 +51,11 @@ npm run start     # servidor de produção
 
 ## Próximas etapas
 
-1. Supabase Auth, esquema Postgres e RLS
-2. Onboarding e dashboard autenticado
-3. Contas, cartões, faturas e parcelas
-4. Orçamentos, metas e relatórios
-5. Dados oficiais de mercado via backend
-6. Testes, CI/CD e produção na Vercel
+1. Telas de autenticação, onboarding e dashboard
+2. Contas, cartões, faturas e parcelas
+3. Orçamentos, metas e relatórios
+4. Dados oficiais de mercado via backend
+5. Testes, CI/CD e produção na Vercel
 
 ## Segurança
 
