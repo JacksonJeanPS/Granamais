@@ -13,7 +13,7 @@ const navigation = [
   { href: "/cartoes", label: "Cartões", icon: CreditCard },
   { href: "/transacoes", label: "Transações", icon: ReceiptText },
   { href: "/orcamento", label: "Orçamento", icon: WalletCards },
-  { href: "/metas", label: "Metas", icon: Target, soon: true },
+  { href: "/metas", label: "Metas", icon: Target },
   { href: "/mercado", label: "Mercado", icon: TrendingUp, soon: true },
   { href: "/simulador", label: "Simulador", icon: PiggyBank, soon: true },
 ];
