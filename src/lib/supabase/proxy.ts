@@ -24,7 +24,7 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims();
   const authenticated = Boolean(data?.claims?.sub);
   const path = request.nextUrl.pathname;
-  const protectedRoute = path.startsWith("/dashboard") || path.startsWith("/onboarding");
+  const protectedRoute = ["/dashboard", "/onboarding", "/contas"].some((prefix) => path.startsWith(prefix));
   const guestRoute = ["/entrar", "/cadastrar", "/recuperar-senha"].includes(path);
 
   const redirectWithCookies = (url: URL) => {
