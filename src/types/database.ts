@@ -876,6 +876,25 @@ export type Database = {
         Args: { p_purchase_id: string }
         Returns: undefined
       }
+      create_recurring_transaction: {
+        Args: {
+          p_account_id: string
+          p_amount: number
+          p_category_id: string
+          p_description: string
+          p_end_date?: string
+          p_frequency: Database["public"]["Enums"]["recurrence_frequency"]
+          p_interval: number
+          p_payment_method?: Database["public"]["Enums"]["payment_method"]
+          p_start_date: string
+          p_type: Database["public"]["Enums"]["transaction_type"]
+        }
+        Returns: string
+      }
+      deactivate_recurrence: {
+        Args: { p_recurrence_id: string }
+        Returns: undefined
+      }
       complete_onboarding: {
         Args: {
           p_account_color: string
