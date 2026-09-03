@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { href: "/dashboard", label: "Visão geral", icon: BarChart3 },
   { href: "/contas", label: "Contas", icon: Landmark },
-  { href: "/cartoes", label: "Cartões", icon: CreditCard, soon: true },
+  { href: "/cartoes", label: "Cartões", icon: CreditCard },
   { href: "/transacoes", label: "Transações", icon: ReceiptText, soon: true },
   { href: "/orcamento", label: "Orçamento", icon: WalletCards, soon: true },
   { href: "/metas", label: "Metas", icon: Target, soon: true },

@@ -872,6 +872,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cancel_purchase: {
+        Args: { p_purchase_id: string }
+        Returns: undefined
+      }
       complete_onboarding: {
         Args: {
           p_account_color: string
