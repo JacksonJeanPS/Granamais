@@ -5,9 +5,9 @@ const highlights = [
 ];
 
 const features = [
-  ["Contas e cartões", "Saldos, limites, faturas e parcelas no mesmo lugar."],
-  ["Orçamento do mês", "Planeje cada categoria e acompanhe o realizado."],
-  ["Metas que avançam", "Veja o progresso e a projeção de cada objetivo."],
+  ["Todas as dívidas juntas", "Centralize saldos, acordos, juros e pagamentos sem perder o controle."],
+  ["Plano para sair do vermelho", "Compare estratégias e descubra quando cada dívida pode terminar."],
+  ["Diagnóstico que vira ação", "Encontre vazamentos e saiba qual é a prioridade financeira do mês."],
 ];
 
 export default function Home() {
@@ -15,10 +15,10 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <header className="flex h-20 items-center justify-between border-b border-border/70">
-          <a className="font-display text-2xl font-extrabold tracking-[-0.04em]" href="#inicio">
+          <a className="font-display text-2xl font-extrabold tracking-[-0.04em]" href="#inicio" aria-label="Grana+ — início">
             Grana<span className="text-brand">+</span>
           </a>
-          <span className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-muted">Em construção</span>
+          <div className="flex items-center gap-2"><a className="hidden text-sm font-bold text-muted hover:text-foreground sm:block" href="/entrar">Entrar</a><a className="button-primary !px-4 !py-2 text-sm" href="/cadastrar">Criar conta</a></div>
         </header>
 
         <section id="inicio" className="grid items-center gap-14 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
@@ -28,11 +28,11 @@ export default function Home() {
               Sua grana, com mais clareza e menos aperto.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted sm:text-xl">
-              Organize contas, cartões, parcelas, orçamento e metas em um só lugar — tudo em Real e do seu jeito.
+              Junte suas dívidas, entenda para onde o dinheiro está indo e siga um plano possível para recuperar o controle.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a className="button-primary" href="#recursos">Conhecer o Grana+</a>
-              <span className="flex items-center px-2 text-sm font-medium text-muted">Controle manual. Decisões conscientes.</span>
+              <a className="button-primary" href="/cadastrar">Começar meu diagnóstico</a>
+              <a className="flex items-center justify-center px-4 text-sm font-bold text-muted hover:text-foreground" href="/entrar">Já tenho uma conta</a>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
         </section>
 
         <footer className="flex flex-col gap-2 border-t border-border py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Grana+ — organização financeira para brasileiros.</p><p>Informação para decidir melhor, sem promessas de rendimento.</p>
+          <p>Grana+ — clareza para organizar dívidas e reconstruir sua vida financeira.</p><p>Seus dados protegidos. Decisões nas suas mãos.</p>
         </footer>
       </div>
     </main>
