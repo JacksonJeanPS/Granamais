@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart3, CreditCard, Landmark, Menu, PiggyBank, ReceiptText, Target, TrendingUp, WalletCards, X } from "lucide-react";
+import { BarChart3, CreditCard, Landmark, Menu, PiggyBank, ReceiptText, Target, TrendingDown, TrendingUp, WalletCards, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -11,6 +11,7 @@ const navigation = [
   { href: "/dashboard", label: "Visão geral", icon: BarChart3 },
   { href: "/contas", label: "Contas", icon: Landmark },
   { href: "/cartoes", label: "Cartões", icon: CreditCard },
+  { href: "/dividas", label: "Dívidas", icon: TrendingDown },
   { href: "/transacoes", label: "Transações", icon: ReceiptText },
   { href: "/orcamento", label: "Orçamento", icon: WalletCards },
   { href: "/metas", label: "Metas", icon: Target },

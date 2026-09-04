@@ -345,6 +345,135 @@ export type Database = {
           },
         ]
       }
+      debt_payments: {
+        Row: {
+          account_id: string | null
+          atualizado_em: string
+          criado_em: string
+          data_pagamento: string
+          debt_id: string
+          id: string
+          observacao: string | null
+          tipo: Database["public"]["Enums"]["debt_payment_type"]
+          user_id: string
+          valor: number
+        }
+        Insert: {
+          account_id?: string | null
+          atualizado_em?: string
+          criado_em?: string
+          data_pagamento?: string
+          debt_id: string
+          id?: string
+          observacao?: string | null
+          tipo: Database["public"]["Enums"]["debt_payment_type"]
+          user_id: string
+          valor: number
+        }
+        Update: {
+          account_id?: string | null
+          atualizado_em?: string
+          criado_em?: string
+          data_pagamento?: string
+          debt_id?: string
+          id?: string
+          observacao?: string | null
+          tipo?: Database["public"]["Enums"]["debt_payment_type"]
+          user_id?: string
+          valor?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "debt_payments_account_id_user_id_fkey"
+            columns: ["account_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id", "user_id"]
+          },
+          {
+            foreignKeyName: "debt_payments_debt_id_user_id_fkey"
+            columns: ["debt_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "debts"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      debts: {
+        Row: {
+          atualizado_em: string
+          credor: string
+          criado_em: string
+          data_contratacao: string | null
+          data_vencimento: string | null
+          em_atraso: boolean
+          id: string
+          negativada: boolean
+          nome: string
+          numero_parcelas: number | null
+          observacao: string | null
+          oferta_quitacao: number | null
+          parcelas_pagas: number
+          prioridade: Database["public"]["Enums"]["debt_priority"]
+          saldo_devedor: number
+          status: Database["public"]["Enums"]["debt_status"]
+          taxa_juros_mensal: number | null
+          tipo: Database["public"]["Enums"]["debt_type"]
+          user_id: string
+          validade_oferta: string | null
+          valor_original: number
+          valor_parcela: number | null
+        }
+        Insert: {
+          atualizado_em?: string
+          credor: string
+          criado_em?: string
+          data_contratacao?: string | null
+          data_vencimento?: string | null
+          em_atraso?: boolean
+          id?: string
+          negativada?: boolean
+          nome: string
+          numero_parcelas?: number | null
+          observacao?: string | null
+          oferta_quitacao?: number | null
+          parcelas_pagas?: number
+          prioridade?: Database["public"]["Enums"]["debt_priority"]
+          saldo_devedor: number
+          status?: Database["public"]["Enums"]["debt_status"]
+          taxa_juros_mensal?: number | null
+          tipo: Database["public"]["Enums"]["debt_type"]
+          user_id: string
+          validade_oferta?: string | null
+          valor_original: number
+          valor_parcela?: number | null
+        }
+        Update: {
+          atualizado_em?: string
+          credor?: string
+          criado_em?: string
+          data_contratacao?: string | null
+          data_vencimento?: string | null
+          em_atraso?: boolean
+          id?: string
+          negativada?: boolean
+          nome?: string
+          numero_parcelas?: number | null
+          observacao?: string | null
+          oferta_quitacao?: number | null
+          parcelas_pagas?: number
+          prioridade?: Database["public"]["Enums"]["debt_priority"]
+          saldo_devedor?: number
+          status?: Database["public"]["Enums"]["debt_status"]
+          taxa_juros_mensal?: number | null
+          tipo?: Database["public"]["Enums"]["debt_type"]
+          user_id?: string
+          validade_oferta?: string | null
+          valor_original?: number
+          valor_parcela?: number | null
+        }
+        Relationships: []
+      }
       financial_events: {
         Row: {
           atualizado_em: string
@@ -872,8 +1001,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      cancel_purchase: {
-        Args: { p_purchase_id: string }
+      cancel_purchase: { Args: { p_purchase_id: string }; Returns: undefined }
+      complete_onboarding: {
+        Args: {
+          p_account_color: string
+          p_account_name: string
+          p_account_type: Database["public"]["Enums"]["account_type"]
+          p_bank_name: string
+          p_card_brand: string
+          p_card_color: string
+          p_card_issuer: string
+          p_card_name: string
+          p_closing_day: number
+          p_credit_limit: number
+          p_due_day: number
+          p_initial_balance: number
+        }
         Returns: undefined
       }
       create_recurring_transaction: {
@@ -895,23 +1038,6 @@ export type Database = {
         Args: { p_recurrence_id: string }
         Returns: undefined
       }
-      complete_onboarding: {
-        Args: {
-          p_account_color: string
-          p_account_name: string
-          p_account_type: Database["public"]["Enums"]["account_type"]
-          p_bank_name: string
-          p_card_brand: string
-          p_card_color: string
-          p_card_issuer: string
-          p_card_name: string
-          p_closing_day: number
-          p_credit_limit: number
-          p_due_day: number
-          p_initial_balance: number
-        }
-        Returns: undefined
-      }
     }
     Enums: {
       account_type:
@@ -921,6 +1047,27 @@ export type Database = {
         | "dinheiro"
         | "carteira_digital"
       category_type: "receita" | "despesa"
+      debt_payment_type:
+        | "parcela"
+        | "extra"
+        | "quitacao"
+        | "desconto"
+        | "ajuste"
+      debt_priority: "baixa" | "media" | "alta" | "urgente"
+      debt_status:
+        | "aberta"
+        | "negociada"
+        | "quitada"
+        | "contestada"
+        | "cancelada"
+      debt_type:
+        | "cartao"
+        | "emprestimo"
+        | "consignado"
+        | "financiamento"
+        | "boleto"
+        | "negativada"
+        | "outra"
       financial_event_type:
         | "decimo_terceiro"
         | "ferias"
@@ -1087,6 +1234,24 @@ export const Constants = {
         "carteira_digital",
       ],
       category_type: ["receita", "despesa"],
+      debt_payment_type: ["parcela", "extra", "quitacao", "desconto", "ajuste"],
+      debt_priority: ["baixa", "media", "alta", "urgente"],
+      debt_status: [
+        "aberta",
+        "negociada",
+        "quitada",
+        "contestada",
+        "cancelada",
+      ],
+      debt_type: [
+        "cartao",
+        "emprestimo",
+        "consignado",
+        "financiamento",
+        "boleto",
+        "negativada",
+        "outra",
+      ],
       financial_event_type: [
         "decimo_terceiro",
         "ferias",
